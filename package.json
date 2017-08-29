@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hideokamoto/alexa-shifter.git"
+    "url": "git+https://github.com/getshifter/alexa-shifterman.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hideokamoto/alexa-shifter/issues"
+    "url": "https://github.com/getshifter/alexa-shifterman/issues"
   },
-  "homepage": "https://github.com/hideokamoto/alexa-shifter#readme",
+  "homepage": "https://github.com/getshifter/alexa-shifterman#readme",
   "devDependencies": {
     "alexa-conversation": "^0.1.0",
     "mocha": "^3.5.0",
