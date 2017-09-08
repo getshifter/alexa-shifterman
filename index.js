@@ -41,7 +41,7 @@ const handlers = {
     this.response.speak(speechOutput)
     this.emit(':responseReady')
   },
-  'getNewsIntent': function () {
+  'GetNewsIntent': function () {
     httpGet('', function (response) {
       // Parse the response into a JSON object ready to be formatted.
       var responseData = JSON.parse(response)

@@ -15,7 +15,7 @@ conversation(opts)
   .end();
 
 conversation(opts)
-  .userSays('getNewsIntent')
+  .userSays('GetNewsIntent')
   .plainResponse
   .shouldContain("These are the 5 most recent shifter headlines,")
   .end();

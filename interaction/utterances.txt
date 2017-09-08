@@ -12,3 +12,12 @@ GetNewFactIntent give me some information
 GetNewFactIntent give me some shifter information
 GetNewFactIntent tell me something
 GetNewFactIntent give me something
+
+GetNewsIntent tell me a shifter news
+GetNewsIntent what is a shifter news
+GetNewsIntent give me a shifter news
+GetNewsIntent tell me a news
+GetNewsIntent what is a news
+GetNewsIntent give me a news
+GetNewsIntent a news
+GetNewsIntent a shifter news

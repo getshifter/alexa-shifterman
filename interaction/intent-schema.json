@@ -4,6 +4,9 @@
       "intent": "GetNewFactIntent"
     },
     {
+      "intent": "GetNewsIntent"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {
