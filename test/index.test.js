@@ -9,12 +9,13 @@ const opts = {
 };
 
 conversation(opts)
-  .userSays('LaunchRequest')
+  .userSays('GetNewFactIntent')
   .plainResponse
-  .shouldContain("Hello. I'm Shifter man.")
-  .shouldContain("What's do you want to know?")
-  .userSays('WantToKnowIntent')
+  .shouldContain("Here\'s the shifter")
+  .end();
+
+conversation(opts)
+  .userSays('getNewsIntent')
   .plainResponse
-  .shouldContain("From Shaun Baer at J2 Design")
-  .shouldContain("Shifter takes the benefits of a static site generator and the power of WordPress and puts them together into one amazing service..")
+  .shouldContain("These are the 5 most recent shifter headlines,")
   .end();

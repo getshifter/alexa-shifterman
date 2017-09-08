@@ -7,6 +7,11 @@ const GET_FACT_MESSAGE = "Here's the shifter tips: "
 const HELP_MESSAGE = 'You can say tell me a space fact, or, you can say exit... What can I help you with?'
 const HELP_REPROMPT = 'What can I help you with?'
 const STOP_MESSAGE = 'See you again!'
+const numberOfResults = 5
+const newsIntroMessage = 'These are the ' + numberOfResults + ' most recent shifter headlines, you can read more on your Alexa app. '
+let output = ''
+let url = 'https://getshifter.io/wp-json/wp/v2/posts'
+let alexa
 
 const data = [
   'Static web pages are nearly maintenance-free and load at lightening speed. But they require outside development resources and don’t offer the functionality of a dynamic web page.',
@@ -37,10 +42,10 @@ const handlers = {
     this.emit(':responseReady')
   },
   'getNewsIntent': function () {
-    httpGet(location, function (response) {
+    httpGet('', function (response) {
       // Parse the response into a JSON object ready to be formatted.
       var responseData = JSON.parse(response)
-      var cardContent = 'Data provided by New York Times\n\n'
+      var cardContent = 'Data provided by Shifter Official site\n\n'
 
       // Check if we have correct data, If not create an error speech out to try again.
       if (responseData == null) {
@@ -49,23 +54,14 @@ const handlers = {
         output = newsIntroMessage
 
         // If we have data.
-        for (var i = 0; i < responseData.response.docs.length; i++) {
-          if (i < numberOfResults) {
-            // Get the name and description JSON structure.
-            var headline = responseData.response.docs[i].headline.main
-            var index = i + 1
-
-            output += ' Headline ' + index + ': ' + headline + ';'
-
-            cardContent += ' Headline ' + index + '.\n'
-            cardContent += headline + '.\n\n'
-          }
+        for (var counter = responseData.length - 1; counter >= 0; counter--) {
+          output += ' Number ' + counter + ' ' + responseData[counter].title.rendered
         }
 
         output += ' See your Alexa app for more information.'
       }
 
-      var cardTitle = location + ' News'
+      var cardTitle = 'Shifter News'
       alexa.emit(':tellWithCard', output, cardTitle, cardContent)
     })
   },
@@ -88,15 +84,16 @@ const handlers = {
 }
 
 module.exports.hello = (event, context, callback) => {
-  const alexa = Alexa.handler(event, context, callback)
+  alexa = Alexa.handler(event, context, callback)
   alexa.registerHandlers(handlers)
   alexa.execute()
 }
 
 function httpGet (query, callback) {
   console.log('/n QUERY: ' + query)
-
-  url = 'https://getshifter.io/wp-json/wp/v2/posts'
+  if (query) {
+    url = `${url}?s=${query}`
+  }
 
   var req = http.request(url, (res) => {
     var body = ''
