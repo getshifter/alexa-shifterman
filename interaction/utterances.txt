@@ -1,0 +1,14 @@
+GetNewFactIntent a topics
+GetNewFactIntent a shifter topics
+GetNewFactIntent tell me a topics
+GetNewFactIntent tell me a shifter topics
+GetNewFactIntent give me a topics
+GetNewFactIntent give me a shifter topics
+GetNewFactIntent tell me trivia
+GetNewFactIntent tell me a shifter trivia
+GetNewFactIntent give me trivia
+GetNewFactIntent give me a shifter trivia
+GetNewFactIntent give me some information
+GetNewFactIntent give me some shifter information
+GetNewFactIntent tell me something
+GetNewFactIntent give me something
