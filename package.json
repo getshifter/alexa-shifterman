@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/mocha/bin/_mocha test -- -R spec --recursive"
+    "test": "node_modules/mocha/bin/_mocha test -- -R spec --recursive",
+    "lint": "./node_modules/eslint/bin/eslint.js *.js",
+    "lint:fix": "./node_modules/eslint/bin/eslint.js *.js --fix"
   },
   "repository": {
     "type": "git",
