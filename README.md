@@ -13,7 +13,9 @@ $ npm install
 ## Deploy
 
 ```
+$ npm prune --production
 $ serverless deploy --region us-east-1
+$ npm install
 ```
 
 ## Test
