@@ -4,7 +4,7 @@ const http = require('https')
 
 // utility methods for creating Image and TextField objects
 const makePlainText = Alexa.utils.TextUtils.makePlainText
-const makeRichText = Alexa.utils.TextUtils.makeRichText
+// const makeRichText = Alexa.utils.TextUtils.makeRichText
 const makeImage = Alexa.utils.ImageUtils.makeImage
 
 const SKILL_NAME = 'Shifter Tips'
@@ -18,11 +18,10 @@ let output = ''
 let url = 'https://getshifter.io/wp-json/wp/v2/posts'
 let alexa
 
-
 const hints = [
   'give me a shifter topics',
   'ask shifterman, tell me a news',
-  'tell me a news',
+  'tell me a news'
 ]
 const data = [
   'Static web pages are nearly maintenance-free and load at lightening speed. But they require outside development resources and don’t offer the functionality of a dynamic web page.',
@@ -100,12 +99,13 @@ const handlers = {
 
     // Build template
     const builder = new Alexa.templateBuilders.BodyTemplate3Builder()
-    const template = builder.setTitle( SKILL_NAME)
+    const template = builder.setTitle(SKILL_NAME)
       .setImage(makeImage('https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'))
       .setTextContent(makePlainText(speechOutput))
       .build()
     this.response.renderTemplate(template)
     this.response.speak(output)
+    this.response.listen(reprompt)
 
     const hintIndex = Math.floor(Math.random() * hints.length)
     const hint = hints[hintIndex]
