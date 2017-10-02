@@ -2,6 +2,11 @@
 const Alexa = require('alexa-sdk')
 const http = require('https')
 
+// utility methods for creating Image and TextField objects
+const makePlainText = Alexa.utils.TextUtils.makePlainText
+const makeRichText = Alexa.utils.TextUtils.makeRichText
+const makeImage = Alexa.utils.ImageUtils.makeImage
+
 const SKILL_NAME = 'Shifter Tips'
 const GET_FACT_MESSAGE = "Here's the shifter tips: "
 const HELP_MESSAGE = 'You can say tell me a space fact, or, you can say exit... What can I help you with?'
@@ -13,6 +18,12 @@ let output = ''
 let url = 'https://getshifter.io/wp-json/wp/v2/posts'
 let alexa
 
+
+const hints = [
+  'give me a shifter topics',
+  'ask shifterman, tell me a news',
+  'tell me a news',
+]
 const data = [
   'Static web pages are nearly maintenance-free and load at lightening speed. But they require outside development resources and don’t offer the functionality of a dynamic web page.',
   'WordPress makes building a website easy and cost effective for almost any user. But it needs regular updates and security can be a concern.',
@@ -37,11 +48,26 @@ const handlers = {
     const randomFact = factArr[factIndex]
     const speechOutput = GET_FACT_MESSAGE + randomFact
 
+    // Build template
+    const builder = new Alexa.templateBuilders.BodyTemplate2Builder()
+    const template = builder.setTitle(SKILL_NAME)
+      .setImage(makeImage('https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'))
+      .setTextContent(makePlainText(randomFact), makePlainText('sample'))
+      .setTitle(GET_FACT_MESSAGE)
+      .build()
+    this.response.renderTemplate(template)
+
     this.response.cardRenderer(SKILL_NAME, randomFact)
     this.response.speak(speechOutput)
+
+    // hint
+    const hintIndex = Math.floor(Math.random() * hints.length)
+    const hint = hints[hintIndex]
+    this.response.hint(hint)
     this.emit(':responseReady')
   },
   'GetNewsIntent': function () {
+    const self = this
     httpGet('', function (response) {
       // Parse the response into a JSON object ready to be formatted.
       var responseData = JSON.parse(response)
@@ -62,7 +88,9 @@ const handlers = {
       }
 
       var cardTitle = 'Shifter News'
-      alexa.emit(':tellWithCard', output, cardTitle, cardContent)
+      self.response.speak(output)
+      self.response.cardRenderer(cardTitle, cardContent)
+      self.emit(':responseReady')
     })
   },
 
@@ -70,7 +98,18 @@ const handlers = {
     const speechOutput = HELP_MESSAGE
     const reprompt = HELP_REPROMPT
 
-    this.response.speak(speechOutput).listen(reprompt)
+    // Build template
+    const builder = new Alexa.templateBuilders.BodyTemplate3Builder()
+    const template = builder.setTitle( SKILL_NAME)
+      .setImage(makeImage('https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'))
+      .setTextContent(makePlainText(speechOutput))
+      .build()
+    this.response.renderTemplate(template)
+    this.response.speak(output)
+
+    const hintIndex = Math.floor(Math.random() * hints.length)
+    const hint = hints[hintIndex]
+    this.response.hint(hint)
     this.emit(':responseReady')
   },
   'AMAZON.CancelIntent': function () {
