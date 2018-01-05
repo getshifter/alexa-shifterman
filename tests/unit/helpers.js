@@ -9,7 +9,7 @@ exports.event = {
       userId: 'amzn1.ask.account.[unique-value-here]'
     },
     application: {
-      applicationId: 'amzn1.ask.skill.[unique-value-here]'
+      applicationId: 'amzn1.ask.skill.27ebf503-dca3-4966-b610-3f90e3314740'
     }
   },
   version: '1.0',
@@ -30,7 +30,7 @@ exports.event = {
         }
       },
       application: {
-        applicationId: 'amzn1.ask.skill.[unique-value-here]'
+        applicationId: 'amzn1.ask.skill.27ebf503-dca3-4966-b610-3f90e3314740'
       },
       user: {
         userId: 'amzn1.ask.account.[unique-value-here]'
