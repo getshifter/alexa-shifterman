@@ -1,6 +1,6 @@
 'use strict'
 exports.handlers = {
-  LaunchRequest: require('./default/GetNewFactIntent'),
+  LaunchRequest: require('./default/LaunchRequest'),
   GetNewFactIntent: require('./default/GetNewFactIntent'),
   GetNewsIntent: require('./default/GetNewsIntent'),
   'AMAZON.HelpIntent': require('./default/Amazon.Help.Intent'),
