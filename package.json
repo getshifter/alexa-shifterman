@@ -6,7 +6,9 @@
   "scripts": {
     "test": "node_modules/mocha/bin/_mocha test -- -R spec --recursive",
     "lint": "./node_modules/eslint/bin/eslint.js *.js",
-    "lint:fix": "./node_modules/eslint/bin/eslint.js *.js --fix"
+    "lint:fix": "./node_modules/eslint/bin/eslint.js *.js --fix",
+    "precommit": "lint-staged",
+    "format": "prettier-eslint --write \"lib/**/*.js\" \"test/**/*.js\""
   },
   "repository": {
     "type": "git",
@@ -27,10 +29,23 @@
     "eslint-plugin-node": "^5.1.1",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
     "mocha": "^3.5.0",
+    "prettier": "^1.9.2",
+    "prettier-eslint": "^8.7.0",
+    "prettier-eslint-cli": "^4.7.0",
     "serverless": "^1.20.2"
   },
   "dependencies": {
     "alexa-sdk": "^1.0.12"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "eslint",
+      "npm test",
+      "git add"
+    ]
   }
 }
