@@ -9,9 +9,6 @@ const makeImage = Alexa.utils.ImageUtils.makeImage
 
 const SKILL_NAME = 'Shifter Tips'
 const GET_FACT_MESSAGE = "Here's the shifter tips: "
-const HELP_MESSAGE =
-  'You can say tell me a shifter fact, or, you can say exit... What can I help you with?'
-const HELP_REPROMPT = 'What can I help you with?'
 const STOP_MESSAGE = 'See you again!'
 const numberOfResults = 10
 const newsIntroMessage =
@@ -101,31 +98,7 @@ exports.handlers = {
       self.emit(':responseReady')
     })
   },
-
-  'AMAZON.HelpIntent': function () {
-    const speechOutput = HELP_MESSAGE
-    const reprompt = HELP_REPROMPT
-
-    // Build template
-    const builder = new Alexa.templateBuilders.BodyTemplate3Builder()
-    const template = builder
-      .setTitle(SKILL_NAME)
-      .setImage(
-        makeImage(
-          'https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'
-        )
-      )
-      .setTextContent(makePlainText(speechOutput))
-      .build()
-    this.response.renderTemplate(template)
-    this.response.speak(speechOutput)
-    this.response.listen(reprompt)
-
-    const hintIndex = Math.floor(Math.random() * hints.length)
-    const hint = hints[hintIndex]
-    this.response.hint(hint)
-    this.emit(':responseReady')
-  },
+  'AMAZON.HelpIntent': require('./default/Amazon.Help.Intent'),
   'AMAZON.CancelIntent': function () {
     this.response.speak(STOP_MESSAGE)
     this.emit(':responseReady')
