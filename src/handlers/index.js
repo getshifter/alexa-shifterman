@@ -9,7 +9,6 @@ const makeImage = Alexa.utils.ImageUtils.makeImage
 
 const SKILL_NAME = 'Shifter Tips'
 const GET_FACT_MESSAGE = "Here's the shifter tips: "
-const STOP_MESSAGE = 'See you again!'
 const numberOfResults = 10
 const newsIntroMessage =
   'These are the ' +
@@ -99,14 +98,8 @@ exports.handlers = {
     })
   },
   'AMAZON.HelpIntent': require('./default/Amazon.Help.Intent'),
-  'AMAZON.CancelIntent': function () {
-    this.response.speak(STOP_MESSAGE)
-    this.emit(':responseReady')
-  },
-  'AMAZON.StopIntent': function () {
-    this.response.speak(STOP_MESSAGE)
-    this.emit(':responseReady')
-  }
+  'AMAZON.CancelIntent': require('./default/SessionEnd'),
+  'AMAZON.StopIntent': require('./default/SessionEnd')
 }
 
 function httpGet (query, callback) {
