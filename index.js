@@ -9,11 +9,15 @@ const makeImage = Alexa.utils.ImageUtils.makeImage
 
 const SKILL_NAME = 'Shifter Tips'
 const GET_FACT_MESSAGE = "Here's the shifter tips: "
-const HELP_MESSAGE = 'You can say tell me a space fact, or, you can say exit... What can I help you with?'
+const HELP_MESSAGE =
+  'You can say tell me a shifter fact, or, you can say exit... What can I help you with?'
 const HELP_REPROMPT = 'What can I help you with?'
 const STOP_MESSAGE = 'See you again!'
 const numberOfResults = 10
-const newsIntroMessage = 'These are the ' + numberOfResults + ' most recent shifter headlines, you can read more on your Alexa app. '
+const newsIntroMessage =
+  'These are the ' +
+  numberOfResults +
+  ' most recent shifter headlines, you can read more on your Alexa app. '
 let output = ''
 let url = 'https://getshifter.io/wp-json/wp/v2/posts'
 let alexa
@@ -38,10 +42,10 @@ const data = [
 ]
 
 const handlers = {
-  'LaunchRequest': function () {
+  LaunchRequest: function () {
     this.emit('GetNewFactIntent')
   },
-  'GetNewFactIntent': function () {
+  GetNewFactIntent: function () {
     const factArr = data
     const factIndex = Math.floor(Math.random() * factArr.length)
     const randomFact = factArr[factIndex]
@@ -49,8 +53,13 @@ const handlers = {
 
     // Build template
     const builder = new Alexa.templateBuilders.BodyTemplate2Builder()
-    const template = builder.setTitle(SKILL_NAME)
-      .setImage(makeImage('https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'))
+    const template = builder
+      .setTitle(SKILL_NAME)
+      .setImage(
+        makeImage(
+          'https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'
+        )
+      )
       .setTextContent(makePlainText(randomFact), makePlainText('sample'))
       .setTitle(GET_FACT_MESSAGE)
       .build()
@@ -65,7 +74,7 @@ const handlers = {
     this.response.hint(hint)
     this.emit(':responseReady')
   },
-  'GetNewsIntent': function () {
+  GetNewsIntent: function () {
     const self = this
     httpGet('', function (response) {
       // Parse the response into a JSON object ready to be formatted.
@@ -80,7 +89,8 @@ const handlers = {
 
         // If we have data.
         for (var counter = responseData.length - 1; counter >= 0; counter--) {
-          output += ' Number ' + counter + ' ' + responseData[counter].title.rendered
+          output +=
+            ' Number ' + counter + ' ' + responseData[counter].title.rendered
         }
 
         output += ' See your Alexa app for more information.'
@@ -99,12 +109,17 @@ const handlers = {
 
     // Build template
     const builder = new Alexa.templateBuilders.BodyTemplate3Builder()
-    const template = builder.setTitle(SKILL_NAME)
-      .setImage(makeImage('https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'))
+    const template = builder
+      .setTitle(SKILL_NAME)
+      .setImage(
+        makeImage(
+          'https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'
+        )
+      )
       .setTextContent(makePlainText(speechOutput))
       .build()
     this.response.renderTemplate(template)
-    this.response.speak(output)
+    this.response.speak(speechOutput)
     this.response.listen(reprompt)
 
     const hintIndex = Math.floor(Math.random() * hints.length)
@@ -129,14 +144,13 @@ module.exports.hello = (event, context, callback) => {
 }
 
 function httpGet (query, callback) {
-  console.log('/n QUERY: ' + query)
   if (query) {
     url = `${url}?s=${query}`
   }
 
-  var req = http.request(url, (res) => {
+  var req = http.request(url, res => {
     var body = ''
-    res.on('data', (d) => {
+    res.on('data', d => {
       body += d
     })
 
@@ -146,7 +160,7 @@ function httpGet (query, callback) {
   })
   req.end()
 
-  req.on('error', (e) => {
+  req.on('error', e => {
     console.error(e)
   })
 }
