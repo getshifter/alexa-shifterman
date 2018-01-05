@@ -57,3 +57,8 @@ exports.executeFunction = (event, handler, assertion) => {
     }
   })
 }
+
+exports.getLambdaHandler = (functionName = 'hello') => {
+  const MyLambdaFunction = require('../../index.js')
+  return MyLambdaFunction[functionName]
+}

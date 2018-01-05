@@ -1,10 +1,8 @@
 /* global describe, beforeEach, it */
 const assert = require('power-assert')
-const MyLambdaFunction = require('../../index.js')
-const handler = MyLambdaFunction.hello
 const helpers = require('./helpers')
-const { event, executeFunction } = helpers
-
+const { event, executeFunction, getLambdaHandler } = helpers
+const handler = getLambdaHandler()
 describe('GetNewsIntent', () => {
   beforeEach(() => {
     event.request.type = 'GetNewsIntent'
