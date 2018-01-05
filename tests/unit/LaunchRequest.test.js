@@ -14,7 +14,7 @@ describe('LaunchRequest', () => {
     const assertions = data => {
       const { response } = data
       const { shouldEndSession } = response
-      assert.equal(shouldEndSession, false)
+      assert.equal(shouldEndSession, true)
     }
     executeFunction(event, handler, assertions)
   })
@@ -23,21 +23,7 @@ describe('LaunchRequest', () => {
     const assertions = data => {
       const { response } = data
       const { outputSpeech } = response
-      assert.notEqual(outputSpeech.ssml.indexOf("Hi! I'm Shifter man."), -1)
-    }
-    executeFunction(event, handler, assertions)
-  })
-  it('should start valid reprompt [English]', () => {
-    event.request.locale = 'en-US'
-    const assertions = data => {
-      const { response } = data
-      const { reprompt } = response
-      assert.deepEqual(reprompt, {
-        outputSpeech: {
-          type: 'SSML',
-          ssml: '<speak> What can I help you with? </speak>'
-        }
-      })
+      assert.notEqual(outputSpeech.ssml.indexOf("Here's the shifter tips"), -1)
     }
     executeFunction(event, handler, assertions)
   })

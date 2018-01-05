@@ -1,10 +1,43 @@
 {
   "intents": [
     {
+      "intent": "AMAZON.NavigateSettingsIntent"
+    },
+    {
+      "intent": "AMAZON.MoreIntent"
+    },
+    {
+      "intent": "AMAZON.PageDownIntent"
+    },
+    {
+      "intent": "AMAZON.PageUpIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollRightIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollDownIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollLeftIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollUpIntent"
+    },
+    {
+      "intent": "AMAZON.NextIntent"
+    },
+    {
+      "intent": "AMAZON.PreviousIntent"
+    },
+    {
       "intent": "GetNewFactIntent"
     },
     {
       "intent": "GetNewsIntent"
+    },
+    {
+      "intent": "AccountUsageIntent"
     },
     {
       "intent": "AMAZON.HelpIntent"
