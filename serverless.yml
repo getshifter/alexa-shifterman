@@ -20,6 +20,9 @@ custom:
     dev: 128
     prod: 512
     default: 128
+  prune:
+    automatic: true
+    number: 3
 
 package:
   include:
@@ -36,3 +39,6 @@ resources:
     HelloLogGroup:
       Properties:
         RetentionInDays: ${self:custom.logRetentionInDays.${self:custom.stage}, self:custom.logRetentionInDays.default}
+
+plugins:
+  - serverless-prune-plugin
