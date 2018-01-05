@@ -30,7 +30,7 @@ package:
 
 functions:
   hello:
-    handler: index.hello
+    handler: src/index.handler
     events:
       - alexaSkill
 
