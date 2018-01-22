@@ -4,6 +4,7 @@ exports.handlers = {
   GetNewFactIntent: require('./default/GetNewFactIntent'),
   GetNewsIntent: require('./default/GetNewsIntent'),
   AccountUsageIntent: require('./accountLink/AccountUsageIntent'),
+  ListProjectIntent: require('./accountLink/ListProjectsIntent'),
   'AMAZON.HelpIntent': require('./default/Amazon.Help.Intent'),
   'AMAZON.CancelIntent': require('./default/SessionEnd'),
   'AMAZON.StopIntent': require('./default/SessionEnd'),

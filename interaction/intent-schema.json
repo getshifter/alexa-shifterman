@@ -40,6 +40,9 @@
       "intent": "AccountUsageIntent"
     },
     {
+      "intent": "ListProjectIntent"
+    },
+    {
       "intent": "AMAZON.HelpIntent"
     },
     {

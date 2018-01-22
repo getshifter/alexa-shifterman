@@ -9,5 +9,6 @@ module.exports = {
   REQUIRE_ACCOUNT_LINK:
     'You have to connect your Shifter account. Please access to alexa dashboard.',
   AGAIN_ACCOUNT_LINK:
-    'You have to connect your Shifter account again. Please access to alexa dashboard.'
+    'You have to connect your Shifter account again. Please access to alexa dashboard.',
+  NO_PROJECTS: 'There is no project in your account.'
 }
