@@ -21,3 +21,8 @@ GetNewsIntent what is a news
 GetNewsIntent give me a news
 GetNewsIntent a news
 GetNewsIntent a shifter news
+
+AccountUsageIntent tell me my usage
+AccountUsageIntent tell me my account usage
+AccountUsageIntent what did i use shifter
+AccountUsageIntent what's my account usage
