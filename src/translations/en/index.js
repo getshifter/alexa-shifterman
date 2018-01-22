@@ -5,5 +5,9 @@ module.exports = {
     'You can say tell me a shifter fact, or, you can say exit... What can I help you with?',
   HELP_REPROMPT: 'What can I help you with?',
   STOP_MESSAGE: 'See you again!',
-  WELCOME_MESSAGE: "Hi! I'm Shifter man."
+  WELCOME_MESSAGE: "Hi! I'm Shifter man.",
+  REQUIRE_ACCOUNT_LINK:
+    'You have to connect your Shifter account. Please access to alexa dashboard.',
+  AGAIN_ACCOUNT_LINK:
+    'You have to connect your Shifter account again. Please access to alexa dashboard.'
 }

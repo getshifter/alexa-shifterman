@@ -10,17 +10,11 @@ module.exports = function () {
   // Get Access token
   var accessToken = this.event.session.user.accessToken
   if (accessToken === undefined) {
-    this.emit(
-      ':tellWithLinkAccountCard',
-      'You have to connect your Shifter account. Please access to alexa dashboard.'
-    )
+    this.emit(':tellWithLinkAccountCard', this.t('REQUIRE_ACCOUNT_LINK'))
     return
   }
   if (!accessToken) {
-    this.emit(
-      ':tellWithLinkAccountCard',
-      'You have to connect your Shifter account again. Please access to alexa dashboard.'
-    )
+    this.emit(':tellWithLinkAccountCard', this.t('AGAIN_ACCOUNT_LINK'))
   }
   var self = this
   request
