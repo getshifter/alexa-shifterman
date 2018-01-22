@@ -12,7 +12,6 @@ GetNewFactIntent give me some information
 GetNewFactIntent give me some shifter information
 GetNewFactIntent tell me something
 GetNewFactIntent give me something
-
 GetNewsIntent tell me a shifter news
 GetNewsIntent what is a shifter news
 GetNewsIntent give me a shifter news
@@ -21,8 +20,17 @@ GetNewsIntent what is a news
 GetNewsIntent give me a news
 GetNewsIntent a news
 GetNewsIntent a shifter news
-
+AccountUsageIntent tell my usage
 AccountUsageIntent tell me my usage
+AccountUsageIntent show my usage
+AccountUsageIntent show me my usage
 AccountUsageIntent tell me my account usage
 AccountUsageIntent what did i use shifter
 AccountUsageIntent what's my account usage
+ListProjectIntent what's my projects
+ListProjectIntent tell my projects
+ListProjectIntent tell me my projects
+ListProjectIntent list my projects
+ListProjectIntent list me my projects
+ListProjectIntent show my projects
+ListProjectIntent show me my projects
