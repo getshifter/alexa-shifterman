@@ -2,7 +2,7 @@ const http = require('https')
 const Alexa = require('alexa-sdk')
 const makeRichText = Alexa.utils.TextUtils.makeRichText
 
-let url = 'https://getshifter.io/wp-json/wp/v2/posts'
+let url = 'https://api.digitalcube.jp/wp-json/wp/v2/posts'
 function httpGet (query, callback) {
   if (query) {
     url = `${url}?s=${query}`
