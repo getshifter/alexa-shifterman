@@ -2,7 +2,7 @@ const http = require('https')
 const Alexa = require('alexa-sdk')
 const makeRichText = Alexa.utils.TextUtils.makeRichText
 
-let url = 'https://getshifter.io/wp-json/wp/v2/posts'
+let url = 'https://api.digitalcube.jp/wp-json/wp/v2/posts'
 function httpGet (query, callback) {
   if (query) {
     url = `${url}?s=${query}`
@@ -39,9 +39,7 @@ module.exports = function () {
     } else {
       const numberOfResults = responseData.length
       const newsIntroMessage =
-        'These are the ' +
-        numberOfResults +
-        ' most recent shifter headlines, you can read more on your Alexa app. '
+        'These are the ' + numberOfResults + ' most recent shifter headlines '
       output = newsIntroMessage
 
       responseData.forEach((item, key) => {
@@ -51,7 +49,6 @@ module.exports = function () {
         output += `<p>${message}</p>`
         newsLists += `${message}<br/><br/>`
       })
-      output += ' See your Alexa app for more information.'
     }
     const cardTitle = 'Shifter News'
     const builder = new Alexa.templateBuilders.BodyTemplate1Builder()
