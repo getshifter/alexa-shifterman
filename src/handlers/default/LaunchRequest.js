@@ -4,7 +4,8 @@ const makeImage = Alexa.utils.ImageUtils.makeImage
 const hints = [
   'give me a shifter topics',
   'ask shifterman, tell me a news',
-  'tell me a news'
+  'tell me a news',
+  'make a new site'
 ]
 
 module.exports = function () {
@@ -13,14 +14,10 @@ module.exports = function () {
   // Build template
   const builder = new Alexa.templateBuilders.BodyTemplate2Builder()
   const template = builder
-    .setTitle(speechOutput)
-    .setImage(
-      makeImage(
-        'https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'
-      )
-    )
+    .setTitle(this.t('SKILL_NAME'))
+    .setImage(makeImage('https://go.getshifter.io/img/site-screenshot.png'))
     .setTextContent(
-      this.t('SKILL_NAME'),
+      makePlainText('Shifter'),
       makePlainText('Serverless WordPress Hosting')
     )
     .build()

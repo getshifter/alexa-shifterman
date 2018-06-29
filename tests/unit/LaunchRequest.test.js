@@ -14,7 +14,7 @@ describe('LaunchRequest', () => {
     const assertions = data => {
       const { response } = data
       const { shouldEndSession } = response
-      assert.equal(shouldEndSession, true)
+      assert.equal(shouldEndSession, false)
     }
     executeFunction(event, handler, assertions)
   })
@@ -23,7 +23,7 @@ describe('LaunchRequest', () => {
     const assertions = data => {
       const { response } = data
       const { outputSpeech } = response
-      assert.notEqual(outputSpeech.ssml.indexOf("Here's the shifter tips"), -1)
+      assert.notEqual(outputSpeech.ssml.indexOf("Hi! I'm Shifter man."), -1)
     }
     executeFunction(event, handler, assertions)
   })

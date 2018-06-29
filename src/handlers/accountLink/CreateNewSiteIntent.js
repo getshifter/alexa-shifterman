@@ -1,13 +1,26 @@
 'use strict'
 const Alexa = require('alexa-sdk')
 const request = require('superagent')
-const moment = require('moment')
 const makeRichText = Alexa.utils.TextUtils.makeRichText
 const makeImage = Alexa.utils.ImageUtils.makeImage
 
+const getName = event => {
+  if (
+    event &&
+    event.request &&
+    event.request.intent &&
+    event.request.intent.slots &&
+    event.request.intent.slots.name &&
+    event.request.intent.slots.name.value
+  ) {
+    return event.request.intent.slots.name.value
+  }
+  return 'Made by Alexa'
+}
+
 module.exports = function () {
   // Get Access token
-  var accessToken = this.event.session.user.accessToken
+  const accessToken = this.event.session.user.accessToken
   if (accessToken === undefined) {
     this.emit(':tellWithLinkAccountCard', this.t('REQUIRE_ACCOUNT_LINK'))
     return
@@ -15,11 +28,17 @@ module.exports = function () {
   if (!accessToken) {
     this.emit(':tellWithLinkAccountCard', this.t('AGAIN_ACCOUNT_LINK'))
   }
-  var self = this
+  const name = getName(this.event)
+  const body = {
+    project_name: name
+  }
+
+  const self = this
   request
-    .get(
+    .post(
       'https://kelbes0rsk.execute-api.us-east-1.amazonaws.com/production/v2/projects'
     )
+    .send(body)
     .set('Authorization', accessToken)
     .end((err, response) => {
       if (err || response.status > 299) {
@@ -30,28 +49,16 @@ module.exports = function () {
         const { body } = response
         let outputSpeech = ''
         let projectLists = ''
-        body.forEach((item, key) => {
-          let message = ''
-          message += `No. ${key + 1},`
-          message += item.project_name ? item.project_name : 'No project name'
-          message += ','
-          const created = moment(item.create_time, 'YYYYMM').format('MMM YYYY')
-          message += `created at ${created}`
-          outputSpeech += `<p>${message}</p>`
-          projectLists += `${message}<br/>`
-        })
-        const noProjectMessage = this.t('NO_PROJECTS')
-        if (!projectLists) projectLists = noProjectMessage
-        if (outputSpeech) {
-          outputSpeech = `<p>Here is your projects.</p>${outputSpeech}`
-        } else {
-          outputSpeech = noProjectMessage
-        }
+        const message = body.project_name
+          ? body.project_name
+          : 'No project name'
+        outputSpeech += `<p>${message}</p>`
+        outputSpeech = `<p>I've create new site that name is ${message}. Please check our dashboard to launch the WordPress site.</p>`
 
         // build template
         const builder = new Alexa.templateBuilders.BodyTemplate3Builder()
         const template = builder
-          .setTitle(`Your account projects`)
+          .setTitle(`Create new site`)
           .setImage(
             makeImage('https://go.getshifter.io/img/site-screenshot.png')
           )

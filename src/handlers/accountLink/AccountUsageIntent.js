@@ -36,9 +36,7 @@ module.exports = function () {
         const template = builder
           .setTitle(`Your account usage in ${trackMonth}`)
           .setImage(
-            makeImage(
-              'https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'
-            )
+            makeImage('https://go.getshifter.io/img/site-screenshot.png')
           )
           .setTextContent(
             makePlainText(`Disk usage is ${diskUsage}`),

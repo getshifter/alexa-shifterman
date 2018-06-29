@@ -16,11 +16,7 @@ module.exports = function () {
   const builder = new Alexa.templateBuilders.BodyTemplate3Builder()
   const template = builder
     .setTitle(this.t('SKILL_NAME'))
-    .setImage(
-      makeImage(
-        'https://getshifter.io/app/uploads/2017/05/Shifter_KO__Full_Bkg-01-1024x1024.png'
-      )
-    )
+    .setImage(makeImage('https://go.getshifter.io/img/site-screenshot.png'))
     .setTextContent(makePlainText(speechOutput))
     .build()
   this.response.renderTemplate(template)
